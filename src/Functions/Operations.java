@@ -2,42 +2,56 @@ package Functions;
 
 
 
+import java.awt.List;
 import java.util.Collection;
-import java.util.function.*;
+import java.util.HashSet;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 
-public class Operations<T>{
+public class Operations<T> {
 	
-	BiFunction<Double, Double, Double> addFunction = (numb1, numb2) -> numb1 + numb2;
-	BiFunction<Double, Double, Double> multFunction = (numb1, numb2) -> numb1 * numb2;
-	BiFunction<Double, Double, Double> subFunction = (numb1, numb2) -> numb1 - numb2;
-	BiFunction<Double, Double, Double> divFunction = (numb1, numb2) -> numb1 / numb2; 
+	BiFunction<Double, Double, Double> addFunction = (x, y) -> x + y;
+	BiFunction<Double, Double, Double> multFunction = (x, y) -> x * y;
+	BiFunction<Double, Double, Double> subFunction = (x, y) -> x - y;
+	BiFunction<Double, Double, Double> divFunction = (x, y) -> x / y; 
 	
 	public static void main(String args[]) {
-		Operations operate = new Operations();
-		operate.run();
+		
+		Operations operations = new Operations();
+		operations.run();
 	}
 	
 	public void run() {
-		System.out.println(Operate(multFunction, 6, 2));
-		System.out.println(this.Operate(addFunction, 5, 2));
-		System.out.println(Operate(subFunction,10,5));
-		System.out.println(Operate(divFunction,100,2));
+		System.out.println(operate(multFunction, 6, 2));
+		System.out.println(operate(addFunction, 5, 2));
+		System.out.println(operate(subFunction,10,5));
+		System.out.println(operate(divFunction,100,2));
 		
-		//System.out.println( map(x -> x*2, ); 
-		//Figuring out how to pass in a collection! 
-		//ImmutableList.of does not work here
+		
+		Collection set1 = new HashSet();
+		for(int i = 0; i <= 10; i++){
+			set1.add(i);
+		}
+		System.out.println(map(x -> x*2, set1)); 
+	
 	
 	}
 	
 	Collection<T> map(Function<T,T> Operate, Collection<T> collection) {
-		collection.stream()
-			.map(Operate);
-		return collection;
+		Collection<T> clone = new HashSet<T>();
+		for( int i = 0; i <collection.size(); i ++){
+			clone.add((T) collection.toArray()[i]);
+			clone.toArray()[i] = Operate.apply((T) clone.toArray()[i]);
+		}
+		return clone;
+		
+	
 	}
 	
-	public double Operate(BiFunction<Double, Double, Double > operation, double numb1, double numb2) {
-		return operation.apply(numb1, numb2);
+	
+	public double operate(BiFunction<Double, Double, Double > operation,  double x, double  y) {
+		return (double) operation.apply(x, y);
 	}
 
 }
