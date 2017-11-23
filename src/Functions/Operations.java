@@ -33,19 +33,20 @@ public class Operations<T> {
 		for(int i = 0; i <= 10; i++){
 			set1.add(i);
 		}
-		System.out.println(map(x -> x*2, set1)); 
+		
+		
+		System.out.println(this.map(x -> x*2, set1)); 
+		//Operator is undefined for type T, int
 	
 	
 	}
 	
 	Collection<T> map(Function<T,T> Operate, Collection<T> collection) {
 		Collection<T> clone = new HashSet<T>();
-		for( int i = 0; i <collection.size(); i ++){
-			clone.add((T) collection.toArray()[i]);
-			clone.toArray()[i] = Operate.apply((T) clone.toArray()[i]);
-		}
-		return clone;
-		
+		for(T x : collection) {
+			clone.add(Operate.apply(collection.iterator().next()));
+		}	
+		return clone;	
 	
 	}
 	
