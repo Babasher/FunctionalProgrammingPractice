@@ -29,22 +29,22 @@ public class Operations<T> {
 		System.out.println(operate(divFunction,100,2));
 		
 		
-		Collection set1 = new HashSet();
+		Collection<Integer> collection = new HashSet<Integer>();
 		for(int i = 0; i <= 10; i++){
-			set1.add(i);
+			collection.add(i);
 		}
 		
 		
-		System.out.println(this.map(x -> x*2, set1)); 
+		System.out.println(map(x -> x*2, collection)); 
 		//Operator is undefined for type T, int
 	
 	
 	}
 	
-	Collection<T> map(Function<T,T> Operate, Collection<T> collection) {
+	public Collection<T> map(Function<T,T> Operate, Collection<T> collection) {
 		Collection<T> clone = new HashSet<T>();
 		for(T x : collection) {
-			clone.add(Operate.apply(collection.iterator().next()));
+			clone.add(Operate.apply(x));
 		}	
 		return clone;	
 	
