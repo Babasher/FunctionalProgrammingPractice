@@ -2,7 +2,6 @@ package Functions;
 
 
 
-import java.awt.List;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.function.BiFunction;
@@ -18,7 +17,7 @@ public class Operations<T> {
 	
 	public static void main(String args[]) {
 		
-		Operations operations = new Operations();
+		Operations<Integer> operations = new Operations<Integer>();
 		operations.run();
 	}
 	
@@ -35,16 +34,17 @@ public class Operations<T> {
 		}
 		
 		
-		System.out.println(map(x -> x*2, collection)); 
+		System.out.println(map((x) -> x*2, collection)) ;
 		//Operator is undefined for type T, int
 	
 	
 	}
 	
-	public Collection<T> map(Function<T,T> Operate, Collection<T> collection) {
-		Collection<T> clone = new HashSet<T>();
-		for(T x : collection) {
-			clone.add(Operate.apply(x));
+	public Collection<Integer> map(Function<Integer,Integer> Operate, Collection<Integer> collection) {
+		Collection<Integer> clone = new HashSet<Integer>();
+		for(Integer x : collection) {
+			clone.add(
+					Operate.apply(x));
 		}	
 		return clone;	
 	
