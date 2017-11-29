@@ -18,7 +18,14 @@ public class Operations<T> {
 	public static void main(String args[]) {
 		
 		Operations<Integer> operations = new Operations<Integer>();
+		Collection<Integer>collection = new HashSet<Integer>();
+		
+		for(int i = 0; i<= 10; i ++) {
+			collection.add(i);
+		}
+		
 		operations.run();
+		System.out.println(operations.map((x)-> x*2, collection));
 	}
 	
 	public void run() {
@@ -26,23 +33,12 @@ public class Operations<T> {
 		System.out.println(operate(addFunction, 5, 2));
 		System.out.println(operate(subFunction,10,5));
 		System.out.println(operate(divFunction,100,2));
-		
-		
-		Collection<Integer> collection = new HashSet<Integer>();
-		for(int i = 0; i <= 10; i++){
-			collection.add(i);
-		}
-		
-		
-		System.out.println(map((x) -> x*2, collection)) ;
-		//Operator is undefined for type T, int
-	
 	
 	}
 	
-	public Collection<Integer> map(Function<Integer,Integer> Operate, Collection<Integer> collection) {
-		Collection<Integer> clone = new HashSet<Integer>();
-		for(Integer x : collection) {
+	public Collection<T> map(Function<T,T> Operate, Collection<T> collection) {
+		Collection<T> clone = new HashSet<T>();
+		for(T x : collection) {
 			clone.add(
 					Operate.apply(x));
 		}	
